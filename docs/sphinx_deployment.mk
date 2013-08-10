@@ -18,7 +18,7 @@ endif
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
 # Configure your right project repo
-#REPO_URL       = git@github.com:hoatle/sphinx-deployment.git
+# REPO_URL       = git@github.com:hoatle/sphinx-deployment.git
 endif
 
 init_gh_pages:
@@ -55,8 +55,8 @@ prepare_deploy:
 	@echo "Pulling any update from Github Pages..."
 	@cd $(DEPLOY_DIR); git pull
 	@mkdir -p $(DEPLOY_DIR)/$(DEPLOY_HTML_DIR)
-	@echo "Copying files from '$(BUILDDIR)/html/.' to '$(DEPLOY_DIR)/$(DEPLOY_HTML_DIR)/'"
-	@cp -r $(BUILDDIR)/html/. $(DEPLOY_DIR)/$(DEPLOY_HTML_DIR)/
+	@echo "Copying files from '$(BUILDDIR)/html/.' to '$(DEPLOY_DIR)/$(DEPLOY_HTML_DIR)'"
+	@cp -r $(BUILDDIR)/html/. $(DEPLOY_DIR)/$(DEPLOY_HTML_DIR)
 
 deploy: prepare_deploy
 	@echo "Committing files..."

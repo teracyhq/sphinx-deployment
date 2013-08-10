@@ -16,7 +16,7 @@ You could choose one of these installation methods below, the first one is recom
 
 Assuming that your sphinx project is under `docs` directory of your project repository.
 
-1\. Bash script
+**1. Bash script**
 
 Just run this bash script from your [sphinx][] project and it's enough.
 
@@ -25,7 +25,7 @@ wget
 ```
 **TODO**
 
-2\. Command line
+**2. Command line**
 
 We're going to checkout this project as a branch and do "overlay" work depending on your project
 structure.
@@ -35,13 +35,9 @@ structure.
 ``` bash
 $ git remote add -f hoatle-sphinx-deployment https://github.com/hoatle/sphinx-deployment.git
 $ git checkout hoatle-sphinx-deployment/develop -b hoatle-sphinx-deployment
-$ mkdir -p docs
-$ git mv CHANGELOG.md docs/CHANGELOG_sphinx_deployment.md
-$ git mv LICENSE docs/LICENSE_sphinx_deployment
-$ git mv README.md docs/README_sphinx_deployment.md
-$ git mv requirements.txt docs/requirements.txt
-$ git mv sphinx_deployment.mk docs/sphinx_deployment.mk
-$ git mv sphinx_deployment.sh docs/sphinx_deployment.sh
+$ git mv CHANGELOG.md CHANGELOG_sphinx_deployment.md
+$ git mv LICENSE.md LICENSE_sphinx_deployment.md
+$ git mv README.md README_sphinx_deployment.md
 $ git commit -m "Install sphinx-deployment"
 ```
 
@@ -51,16 +47,19 @@ $ git commit -m "Install sphinx-deployment"
 $ git remote add -f hoatle-sphinx-deployment https://github.com/hoatle/sphinx-deployment.git
 $ git checkout hoatle-sphinx-deployment/develop -b hoatle-sphinx-deployment
 $ git mv CHANGELOG.md CHANGELOG_sphinx_deployment.md
-$ git mv LICENSE LICENSE_sphinx_deployment
+$ git mv LICENSE.md LICENSE_sphinx_deployment.md
 $ git mv README.md README_sphinx_deployment.md
+$ git mv docs/requirements.txt requirements.txt
+$ git mv docs/sphinx_deployment.mk sphinx_deployment.mk
 $ git commit -m "Install sphinx-deployment"
 ```
 
+
 Note: You need to keep `hoatle-sphinx-deployment` branch for easier updating later.
 
-3\. Manual
+**3. Manual**
 
-- Copy all contents from this repository to your [sphinx][] project.
+- Copy all contents from `docs` directory to your [sphinx][] project.
 
 - Rename `README.md` to `README_sphinx_deployment.md`
 
@@ -71,7 +70,7 @@ Note: You need to keep `hoatle-sphinx-deployment` branch for easier updating lat
 How to configure
 ----------------
 
-1. `sphinx_deployment.mk`
+**1. `sphinx_deployment.mk`**
 
 You need to configure these deployment configurations following your project organization on
 `sphinx_deployment.mk` file on `hoatle-sphinx-deployment` branch.
@@ -92,7 +91,7 @@ ifndef REPO_URL
 endif
 ```
 
-2\. `Makefile`
+**2. `Makefile`**
 
 - Merge `hoatle-sphinx-deployment` branch into your working branch for all the changes from
 installation and configuration steps above. For example:
@@ -123,23 +122,23 @@ echo 'include sphinx_deployment.mk' >> Makefile
 How to use
 ----------
 
-0\. `$ make init_gh_pages`
+**0. `$ make init_gh_pages`**
 
 For **the first time only** to create and push the `$(DEPLOY_BRANCH)` if it does not exist.
 
 Note: I'm working to remove this `target` to use just `make setup_gh_pages` target to initialize
 `$(DEPLOY_BRANCH)` if it does not exists.
 
-1\. `make setup_gh_pages`
+**1. `make setup_gh_pages`**
 
 For one time only when your [sphinx][] project is cloned to create `$(DEPLOY_DIR)` to track
 `$(DEPLOY_BRANCH)`.
 
-2\. `$ make generate`
+**2. `$ make generate`**
 
 For generating contents, alias for `make html`
 
-3\. `$ make deploy`
+**3. `$ make deploy`**
 
 Deploy the generated content to the target `$(DEPLOY_BRANCH)`
 
@@ -148,33 +147,8 @@ How to build with travis-ci
 ---------------------------
 
 Move `.travis.yml` file to your root repository project, and configure it following its
-instruction there and you're done.
-
-You could define the configuration build for travis like example below:
-
-``` Makefile
-branches:
-  only:
-  - master #Configure your automatic build only on a target project branch when there is a push
-language: python
-install: pip install -r requirements.txt # change this to the right project path
-before_script:
-- git config --global user.name "Teracy" # Configure your git user.name here
-- git config --global user.email "your-friends@teracy.com" # Configure your git user.email here
-- export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
-- cd docs # change this to your right project path
-- make setup_gh_pages
-script: make generate
-after_script: make deploy
-env:
-  global:
-  - GH_REPO="hoatle/sphinx_deployment" #change this to your right project
-  # override settings from sphinx_deployment.mk
-  - DEPLOY_HTML_DIR = ''
-  # configure the right travis-ci secure key, see sphinx-deployment/README for more details
-  #- secure: im3gWbsEF135C0jKlOIRJUa1tgtsCAaqwGDSpzwe/fnTosqystNE+mhvFfERmy1K4qRg0cbRYGd8L6pP/V7RR3GMqFX4h5wexZeKsCN895S0d7QIWUmw2yJ3+mvk/g+E6q56tORzhKzKVRef5VWkk84EOKrZ/KIeoVpKVAlVR1s=
-
-```
+instruction there. There is a supported `.travis/setup.sh` to export variables for `Makefile`
+depending on the being-built branch.
 
 
 Authors and contributors

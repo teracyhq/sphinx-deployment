@@ -1,12 +1,15 @@
 branches:
   only:
   - master #Configure your automatic build only on a target project branch when there is a push
+  - develop
 language: python
 install: pip install -r docs/requirements.txt # change this to the right project path
 before_script:
 - git config --global user.name "Teracy" # Configure your git user.name here
 - git config --global user.email "your-friends@teracy.com" # Configure your git user.email here
 - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
+- . ./.travis/setup.sh # make any change needed for setup.sh
+- echo $DEPLOY_HTML_DIR
 - cd docs # change this to your right project path
 - make setup_gh_pages
 script: make generate
