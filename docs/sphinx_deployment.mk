@@ -63,3 +63,5 @@ deploy: prepare_deploy
 	@cd $(DEPLOY_DIR); git add -A; git commit -m "docs updated at `date -u`";\
 		git push origin $(DEPLOY_BRANCH) --quiet
 	@echo "Github Pages deploy is completed at `date -u`"
+
+gen_deploy: generate deploy
