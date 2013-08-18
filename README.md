@@ -48,14 +48,14 @@ You need to specify the <docs_path> to your sphinx docs directory:
 
 ``` bash
 $ cd <your_project>
-$ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
+$ wget https://raw.github.com/teracy-official/sphinx-deployment/develop/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
 ```
 
 For example:
 
 ``` bash
 $ cd my_project
-$ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
+$ wget https://raw.github.com/teracy-official/sphinx-deployment/develop/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 ```
 
 **2. Manual**
@@ -127,7 +127,7 @@ echo 'include sphinx_deployment.mk' >> Makefile
 ```
 
 
-Continouse Integration Build
+Continuous Integration Build
 ----------------------------
 
 **1. travis-ci**

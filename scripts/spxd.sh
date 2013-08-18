@@ -52,7 +52,7 @@ function install() {
     git clone https://github.com/teracy-official/sphinx-deployment.git
     cd sphinx-deployment
     git fetch origin
-    git checkout origin/master
+    git checkout origin/develop
     # test
     # git clone https://github.com/hoatle/sphinx-deployment.git
     # cd sphinx-deployment
