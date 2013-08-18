@@ -12,7 +12,7 @@ This project is intended to be used to deploy [sphinx][] project on:
 Usage
 -----
 
-**1. `make setup_gh_pages`**
+**1. `$ make setup_gh_pages`**
 
 For one time only when your [sphinx][] project is cloned to create `$(DEPLOY_DIR)` to track
 `$(DEPLOY_BRANCH)`.
