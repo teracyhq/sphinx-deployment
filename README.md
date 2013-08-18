@@ -109,7 +109,10 @@ $ git merge -X theirs hoatle-sphinx-deployment
 `master` branch if any. You need to review the change carefully after this merge to make sure it
 does overwrite anything by accident.
 
-- Include `sphinx_deployment.mk` to your `Makefile`. For example:
+- Include `sphinx_deployment.mk` to your `Makefile`. (You don't have to do this with bash script
+installation)
+
+For example:
 
 ``` bash
 echo '' >> docs/Makefile

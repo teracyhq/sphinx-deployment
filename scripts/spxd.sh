@@ -15,6 +15,18 @@
 # $ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 #
 
+function command_exists() {
+    type "$1" &> /dev/null;
+}
+
+function require() {
+    if ! command_exists git ; then
+        echo "Error: 'git' is required for installation, please install 'git' first."
+        echo "Installation aborted!"
+        exit 1
+    fi
+}
+
 function usage() {
     echo "Usage:"
     echo "  spxd.sh [options]"
@@ -61,10 +73,16 @@ function install() {
     # clean up
     cd ..
     rm -rf sphinx-deployment
+    # add sphinx-deployment.mk to Makefile
+    cd $docs_path
+    echo '' >> Makefile
+    echo 'include sphinx_deployment.mk' >> Makefile
     echo ''
     echo "installation completed, please read $docs_path/README_sphinx_deployment.md for configuration and usage."
 }
 
+# check requirements
+require
 
 while getopts ":p:h" opt; do
     case $opt in
