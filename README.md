@@ -53,12 +53,29 @@ $ wget https://raw.github.com/teracy-official/sphinx-deployment/develop/scripts/
 
 **2. Manual**
 
-You need to copy these following files to your [sphinx][] directory:
+a. You need to copy these following files to your [sphinx][] directory:
 
 - `docs/requirements`
 - `docs/sphinx_deployment.mk`
 
-To build with `travis`, you need to copy these following files to your root project directory:
+b. Include `sphinx_deployment.mk` to your `Makefile`:
+
+- Add the content below to your `Makefile`:
+
+```
+include sphinx_deployment.mk
+```
+
+- Or do with commands on terminal:
+
+``` bash
+echo '' >> Makefile
+echo 'include sphinx_deployment.mk' >> Makefile
+```
+
+
+
+c.. To build with `travis-ci`, you need to copy these following files to your root project directory:
 
 - `.travis.yml`
 - `.travis/setup.sh`
@@ -67,10 +84,8 @@ To build with `travis`, you need to copy these following files to your root proj
 Configuration
 -------------
 
-**1. `sphinx_deployment.mk`**
-
-You need to configure these deployment configurations following your project organization on
-`sphinx_deployment.mk` file on `hoatle-sphinx-deployment` branch.
+You need to configure these following deployment configurations following your project settings on
+`sphinx_deployment.mk` file.
 
 ``` Makefile
 # Deployment configurations
@@ -88,49 +103,20 @@ ifndef REPO_URL
 endif
 ```
 
-**2. `Makefile`**
-
-- Merge `hoatle-sphinx-deployment` branch into your working branch for all the changes from
-installation and configuration steps above. For example:
-
-``` bash
-$ git checkout master
-$ git merge -X theirs hoatle-sphinx-deployment
-```
-
-`-X theirs` means the `hoatle-sphinx-deployment` branch content will overwrite existing content of
-`master` branch if any. You need to review the change carefully after this merge to make sure it
-does overwrite anything by accident.
-
-- Include `sphinx_deployment.mk` to your `Makefile`. (You don't have to do this with bash script
-installation)
-
-For example:
-
-``` bash
-echo '' >> docs/Makefile
-echo 'include sphinx_deployment.mk' >> docs/Makefile
-```
-
-or:
-
-``` bash
-echo '' >> Makefile
-echo 'include sphinx_deployment.mk' >> Makefile
-```
-
-
 Continuous Integration Build
 ----------------------------
 
-**1. travis-ci**
+**1. `travis-ci`**
 
 Move `.travis.yml` file to your root repository project, and configure it following its
 instruction there. There is a supported `.travis/setup.sh` to export variables for `Makefile`
 depending on the being-built branch.
 
+To configure secure token for `travis-ci`, please read the similar step described at
+http://blog.teracy.com/2013/08/03/how-to-start-blogging-easily-with-octopress-and-teracy-dev/
 
-**2. jenkins**
+
+**2. `jenkins`**
 
 //TODO
 
