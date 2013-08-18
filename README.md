@@ -9,66 +9,64 @@ This project is intended to be used to deploy [sphinx][] project on:
 - [Rsync](http://en.wikipedia.org/wiki/Rsync)
 - PaaS services: [heroku](http://heroku.com/), etc.
 
-How to install
----------------
+Usage
+-----
 
-You could choose one of these installation methods below, the first one is recommended.
+**0. `$ make init_gh_pages`**
 
-Assuming that your sphinx project is under `docs` directory of your project repository.
+For **the first time only** to create and push the `$(DEPLOY_BRANCH)` if it does not exist.
+
+Note: I'm working to remove this `target` to use just `make setup_gh_pages` target to initialize
+`$(DEPLOY_BRANCH)` if it does not exists.
+
+**1. `make setup_gh_pages`**
+
+For one time only when your [sphinx][] project is cloned to create `$(DEPLOY_DIR)` to track
+`$(DEPLOY_BRANCH)`.
+
+**2. `$ make generate`**
+
+For generating contents, alias for `make html`
+
+**3. `$ make deploy`**
+
+Deploy the generated content to the target `$(DEPLOY_BRANCH)`
+
+
+Installation
+------------
 
 **1. Bash script**
 
 Just run this bash script from your [sphinx][] project and it's enough.
 
-``` bash
-wget
-```
-**TODO**
-
-**2. Command line**
-
-We're going to checkout this project as a branch and do "overlay" work depending on your project
-structure.
-
-2.1. If your `sphinx` docs project is under `docs` directory of a `git` repository:
+You need to specify the <docs_path> to your sphinx docs directory:
 
 ``` bash
-$ git remote add -f hoatle-sphinx-deployment https://github.com/hoatle/sphinx-deployment.git
-$ git checkout hoatle-sphinx-deployment/develop -b hoatle-sphinx-deployment
-$ git mv CHANGELOG.md CHANGELOG_sphinx_deployment.md
-$ git mv LICENSE.md LICENSE_sphinx_deployment.md
-$ git mv README.md README_sphinx_deployment.md
-$ git commit -m "Install sphinx-deployment"
+$ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
 ```
 
-2.2. If your [sphinx][] docs is a git repository
+For example:
 
 ``` bash
-$ git remote add -f hoatle-sphinx-deployment https://github.com/hoatle/sphinx-deployment.git
-$ git checkout hoatle-sphinx-deployment/develop -b hoatle-sphinx-deployment
-$ git mv CHANGELOG.md CHANGELOG_sphinx_deployment.md
-$ git mv LICENSE.md LICENSE_sphinx_deployment.md
-$ git mv README.md README_sphinx_deployment.md
-$ git mv docs/requirements.txt requirements.txt
-$ git mv docs/sphinx_deployment.mk sphinx_deployment.mk
-$ git commit -m "Install sphinx-deployment"
+$ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 ```
 
+**2. Manual**
 
-Note: You need to keep `hoatle-sphinx-deployment` branch for easier updating later.
+You need to copy these following files to your [sphinx][] directory:
 
-**3. Manual**
+- `docs/requirements`
+- `docs/sphinx_deployment.mk`
 
-- Copy all contents from `docs` directory to your [sphinx][] project.
+To build with `travis`, you need to copy these following files to your root project directory:
 
-- Rename `README.md` to `README_sphinx_deployment.md`
+- `.travis.yml`
+- `.travis/setup.sh`
 
-- Rename `CHANGELOG.md` to `CHANGELOG_sphinx_deployment.md`
 
-- Rename `LICENSE` to `LICENSE_sphinx_deployment`
-
-How to configure
-----------------
+Configuration
+-------------
 
 **1. `sphinx_deployment.mk`**
 
@@ -119,36 +117,20 @@ echo '' >> Makefile
 echo 'include sphinx_deployment.mk' >> Makefile
 ```
 
-How to use
-----------
 
-**0. `$ make init_gh_pages`**
+Continouse Integration Build
+----------------------------
 
-For **the first time only** to create and push the `$(DEPLOY_BRANCH)` if it does not exist.
-
-Note: I'm working to remove this `target` to use just `make setup_gh_pages` target to initialize
-`$(DEPLOY_BRANCH)` if it does not exists.
-
-**1. `make setup_gh_pages`**
-
-For one time only when your [sphinx][] project is cloned to create `$(DEPLOY_DIR)` to track
-`$(DEPLOY_BRANCH)`.
-
-**2. `$ make generate`**
-
-For generating contents, alias for `make html`
-
-**3. `$ make deploy`**
-
-Deploy the generated content to the target `$(DEPLOY_BRANCH)`
-
-
-How to build with travis-ci
----------------------------
+**1. travis-ci**
 
 Move `.travis.yml` file to your root repository project, and configure it following its
 instruction there. There is a supported `.travis/setup.sh` to export variables for `Makefile`
 depending on the being-built branch.
+
+
+**2. jenkins**
+
+//TODO
 
 
 Authors and contributors
@@ -161,7 +143,37 @@ Authors and contributors
 License
 -------
 
-MIT License
+BSD License
 
+```
+Copyright (c) Teracy, Inc and individual contributors.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice,
+       this list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+
+    3. Neither the name of Teracy nor the names of its contributors may be used
+       to endorse or promote products derived from this software without
+       specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+```
 
 [sphinx]: http://sphinx-doc.org
