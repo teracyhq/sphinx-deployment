@@ -42,17 +42,19 @@ Installation
 
 **1. Bash script**
 
-Just run this bash script from your [sphinx][] project and it's enough.
+Just run this bash script from your root git repository project and it's enough.
 
 You need to specify the <docs_path> to your sphinx docs directory:
 
 ``` bash
+$ cd <your_project>
 $ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
 ```
 
 For example:
 
 ``` bash
+$ cd my_project
 $ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 ```
 

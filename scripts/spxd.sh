@@ -25,13 +25,44 @@ function usage() {
 }
 
 function install() {
+    # assume that the current working directory is the root git repository directory
+    # to copy travis-ci stuff into this directory
+    local project_root_path=`pwd`
     # relative or absolute <docs_path>?
     if [[ $1 =~ ^\/ ]]; then
-        local install_path=$1
+        local docs_path=$1
     else
-        local install_path=`pwd`"/$1"
+        local docs_path="$project_root_path/$1"
     fi
-    echo "installing sphinx_deployment to '$install_path'..."
+    echo "installing sphinx_deployment to '$docs_path'..."
+    cd /tmp
+    rm -rf sphinx-deployment
+    git clone https://github.com/teracy-official/sphinx-deployment.git
+    cd sphinx-deployment
+    git fetch origin
+    git checkout origin/master
+    # test
+    # git clone https://github.com/hoatle/sphinx-deployment.git
+    # cd sphinx-deployment
+    # git fetch origin
+    # git checkout origin/features/3_installation_bash_script
+    # copy required stuff
+    echo "copying required files..."
+    mkdir -p $docs_path
+    cp -r docs/* $docs_path
+    cp .travis.yml $project_root_path
+    mkdir -p $project_root_path/.travis
+    cp -r .travis/* $project_root_path/.travis
+    # copy meta stuff
+    echo "copying meta files..."
+    cp CHANGELOG.md $docs_path/CHANGELOG_sphinx_deployment.md
+    cp LICENSE $docs_path/LICENSE_sphinx_deployment
+    cp README.md $docs_path/README_sphinx_deployment.md
+    # clean up
+    cd ..
+    rm -rf sphinx-deployment
+    echo ''
+    echo "installation completed, please read $docs_path/README_sphinx_deployment.md for configuration and usage."
 }
 
 
