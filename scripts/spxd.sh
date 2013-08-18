@@ -12,7 +12,7 @@
 ############################################################################
 # Example to install on <your_project/docs>
 # $ cd <your_project>
-# $ wget https://github.com/teracy-official/sphinx_deployment/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p docs
+# $ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 #
 
 function usage() {
