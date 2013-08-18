@@ -4,7 +4,7 @@
 #
 ############################################################################
 # Usage:
-#   spxd [options]
+#   spxd.sh [options]
 #
 # Options:
 #   -h              Help
@@ -17,7 +17,7 @@
 
 function usage() {
     echo "Usage:"
-    echo "  spxd [options]"
+    echo "  spxd.sh [options]"
     echo ""
     echo "Options:"
     echo "  -h             Help"
