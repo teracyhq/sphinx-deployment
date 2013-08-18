@@ -32,6 +32,10 @@ For generating contents, alias for `make html`
 
 Deploy the generated content to the target `$(DEPLOY_BRANCH)`
 
+**4. `$ make gen_deploy`**
+
+Generate and deploy the generated content to the target `$(DEPLOY_BRANCh)`
+
 
 Installation
 ------------
