@@ -25,7 +25,13 @@ function usage() {
 }
 
 function install() {
-    echo "installing sphinx_deployment to '$1'..."
+    # relative or absolute <docs_path>?
+    if [[ $1 =~ ^\/ ]]; then
+        local install_path=$1
+    else
+        local install_path=`pwd`"/$1"
+    fi
+    echo "installing sphinx_deployment to '$install_path'..."
 }
 
 
