@@ -33,7 +33,7 @@ ifndef DEPLOY_DIR
 DEPLOY_DIR      = _deploy
 endif
 
-# Copy contents from $(BUILDDIR) this this directory
+# Copy contents from $(BUILDDIR) $(DEPLOY_DIR)/$(DEPLOY_HTML_DIR) directory
 ifndef DEPLOY_HTML_DIR
 DEPLOY_HTML_DIR = docs
 endif
@@ -46,11 +46,10 @@ endif
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
 # Configure your right project repo
-# REPO_URL       = git@github.com:hoatle/sphinx-deployment.git
+# REPO_URL       = git@github.com:teracy-official/sphinx-deployment.git
 endif
 
 init_gh_pages:
-	@echo "Preparing Github deployment branch: $(DEPLOY_BRANCH) for the first time only..."
 	@rm -rf $(DEPLOY_DIR)
 	@mkdir -p $(DEPLOY_DIR)
 	@cd $(DEPLOY_DIR); git init;\
@@ -58,10 +57,14 @@ init_gh_pages:
 		touch .nojekyll;\
 		git add .; git commit -m "sphinx docs init";\
 		git branch -m $(DEPLOY_BRANCH);\
-		git remote add origin $(REPO_URL);\
-		git push -u origin $(DEPLOY_BRANCH) && echo "Now you can 'make setup_gh_pages'"
+		git remote add origin $(REPO_URL);
+	@cd $(DEPLOY_DIR);\
+		if ! git ls-remote origin $(DEPLOY_BRANCH) | grep $(DEPLOY_BRANCH) ; then \
+			echo "Preparing Github deployment branch: $(DEPLOY_BRANCH) for the first time only...";\
+			git push -u origin $(DEPLOY_BRANCH);\
+		fi
 
-setup_gh_pages:
+setup_gh_pages: init_gh_pages
 	@echo "Setting up gh-pages deployment..."
 	@rm -rf $(DEPLOY_DIR)
 	@mkdir -p $(DEPLOY_DIR)

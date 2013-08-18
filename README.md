@@ -12,13 +12,6 @@ This project is intended to be used to deploy [sphinx][] project on:
 Usage
 -----
 
-**0. `$ make init_gh_pages`**
-
-For **the first time only** to create and push the `$(DEPLOY_BRANCH)` if it does not exist.
-
-Note: I'm working to remove this `target` to use just `make setup_gh_pages` target to initialize
-`$(DEPLOY_BRANCH)` if it does not exists.
-
 **1. `make setup_gh_pages`**
 
 For one time only when your [sphinx][] project is cloned to create `$(DEPLOY_DIR)` to track
@@ -34,7 +27,7 @@ Deploy the generated content to the target `$(DEPLOY_BRANCH)`
 
 **4. `$ make gen_deploy`**
 
-Generate and deploy the generated content to the target `$(DEPLOY_BRANCh)`
+Generate and deploy the generated content to the target `$(DEPLOY_BRANCH)`
 
 
 Installation
