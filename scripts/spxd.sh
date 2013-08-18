@@ -46,6 +46,7 @@ function install() {
     else
         local docs_path="$project_root_path/$1"
     fi
+
     echo "installing sphinx_deployment to '$docs_path'..."
     cd /tmp
     rm -rf sphinx-deployment
@@ -59,26 +60,33 @@ function install() {
     # git fetch origin
     # git checkout origin/features/3_installation_bash_script
     # copy required stuff
+
     echo "copying required files..."
     mkdir -p $docs_path
     cp -r docs/* $docs_path
     cp .travis.yml $project_root_path
     mkdir -p $project_root_path/.travis
     cp -r .travis/* $project_root_path/.travis
+
     # copy meta stuff
     echo "copying meta files..."
     cp CHANGELOG.md $docs_path/CHANGELOG_sphinx_deployment.md
     cp LICENSE $docs_path/LICENSE_sphinx_deployment
     cp README.md $docs_path/README_sphinx_deployment.md
+
     # clean up
     cd ..
     rm -rf sphinx-deployment
-    # add sphinx-deployment.mk to Makefile
+
+    # add sphinx-deployment.mk to Makefile only if not added yet
     cd $docs_path
-    echo '' >> Makefile
-    echo 'include sphinx_deployment.mk' >> Makefile
+    if [ -f Makefile ] && ! grep -q sphinx_deployment.mk Makefile ; then
+        echo '' >> Makefile
+        echo 'include sphinx_deployment.mk' >> Makefile
+    fi
+
     echo ''
-    echo "installation completed, please read $docs_path/README_sphinx_deployment.md for configuration and usage."
+    echo "installation completed, please read $docs_path/README_sphinx_deployment.md for usage."
 }
 
 # check requirements
