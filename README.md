@@ -44,7 +44,7 @@ Installation
 
 Just run this bash script from your root git repository project and it's enough.
 
-You need to specify the <docs_path> to your sphinx docs directory:
+You need to specify the `<docs_path>` to your sphinx docs directory:
 
 ``` bash
 $ cd <your_project>
