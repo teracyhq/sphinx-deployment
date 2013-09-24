@@ -1,4 +1,4 @@
-# Copyright (c) Teracy, Inc and individual contributors.
+# Copyright (c) Teracy, Inc. and individual contributors.
 # All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without modification,
@@ -11,7 +11,7 @@
 #        notice, this list of conditions and the following disclaimer in the
 #        documentation and/or other materials provided with the distribution.
 
-#     3. Neither the name of Teracy nor the names of its contributors may be used
+#     3. Neither the name of Teracy, Inc. nor the names of its contributors may be used
 #        to endorse or promote products derived from this software without
 #        specific prior written permission.
 
@@ -66,14 +66,7 @@ init_gh_pages:
 
 setup_gh_pages: init_gh_pages
 	@echo "Setting up gh-pages deployment..."
-	@rm -rf $(DEPLOY_DIR)
-	@mkdir -p $(DEPLOY_DIR)
 	@cd $(DEPLOY_DIR);\
-		git init;\
-		echo 'sphinx docs comming soon...' > index.html;\
-		git add .; git commit -m "sphinx docs init";\
-		git branch -m $(DEPLOY_BRANCH); \
-		git remote add origin $(REPO_URL);\
 		git fetch origin;\
 		git reset --hard origin/$(DEPLOY_BRANCH);\
 		git branch --set-upstream $(DEPLOY_BRANCH) origin/$(DEPLOY_BRANCH)
