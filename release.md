@@ -22,3 +22,6 @@ scripts/spxd.sh
 ---------------
 
 - Find `develop` branch and replace it by the release version.
+
+Note: After merging tag version into master/ branch, remember to update the right branch on
+README.md and scripts/spxd.sh
