@@ -18,8 +18,8 @@ For generating contents, alias for `$ make html`
 
 **2. `$ make deploy`**
 
-For short-cut deployment, it could be `$ make push`, `$ make rsync` basing on the configuration
-of `DEPLOY_DEFAULT`.
+For short-cut deployment, it could be `$ make deploy_gh_pages`, `$ make deploy_rsync` or
+`$ make deploy_heroku` basing on the configuration of `DEPLOY_DEFAULT`.
 
 **3. `$ make gen_deploy`**
 
@@ -27,16 +27,26 @@ For short-cut generation and deployment: `$ make generate` and then `$ make depl
 
 **4. `$ make setup_gh_pages`**
 
-For one time only when your [sphinx][] project is cloned to create `$(DEPLOY_DIR)` to track
-`$(DEPLOY_BRANCH)`. This shoud be used only for github pages deployment.
+For the first time only to create `$(DEPLOY_DIR)` to track `$(DEPLOY_BRANCH)`. This is used for
+github pages deployment.
 
-**5. `$ make push`**
+**5. `$ make setup_heroku`**
+
+For the first time only to create `$(DEPLOY_DIR_HEROKU` to track the Heroku repo's master branch.
+This is used for heroku deployment.
+
+**6. `$ make deploy_gh_pages`**
 
 For deploying with github pages only.
 
-**6. `$ make rsync`**
+**7. `$ make deploy_rsync`**
 
 For deploying with rsync only.
+
+**8. `$ make deploy_heroku`**
+
+For deploying with heroku only.
+
 
 Installation
 ------------
@@ -49,14 +59,14 @@ You need to specify the `<docs_path>` to your sphinx docs directory:
 
 ``` bash
 $ cd <your_project>
-$ wget https://raw.github.com/teracy-official/sphinx-deployment/develop/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
+$ wget https://raw.github.com/teracy-official/sphinx-deployment/v0.3.0/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
 ```
 
 For example:
 
 ``` bash
 $ cd my_project
-$ wget https://raw.github.com/teracy-official/sphinx-deployment/develop/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
+$ wget https://raw.github.com/teracy-official/sphinx-deployment/v0.3.0/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 ```
 
 **2. Manual**
