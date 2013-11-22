@@ -66,6 +66,7 @@ a. You need to copy these following files to your [sphinx][] directory:
 - `docs/requirements`
 - `docs/sphinx_deployment.mk`
 - `docs/rsync_exclude`
+- `docs/.deploy_heroku/*`
 
 b. Include `sphinx_deployment.mk` to your `Makefile`:
 
@@ -99,17 +100,25 @@ You need to configure these following deployment configurations following your p
 # Deployment configurations from sphinx_deployment project
 
 # default deployment when $ make deploy
-# push       : to $ make push
-# rsync      : to $ make rsync
-# push rsync : to $ make push then $ make rsync
-# default value: push
+# deploy_gh_pages                            : to $ make deploy_gh_pages
+# deploy_rsync                               : to $ make deploy_rsync
+# deploy_heroku                              : to $ make deploy_heroku
+# deploy_gh_pages deploy_rsync deploy_heroku : to $ make deploy_gh_pages then $ make deploy_rsync
+#                                              and then $ make deploy_heroku
+# default value: deploy_gh_pages
 ifndef DEPLOY_DEFAULT
-DEPLOY_DEFAULT = push
+DEPLOY_DEFAULT = deploy_gh_pages
 endif
 
 # The deployment directory to be deployed
 ifndef DEPLOY_DIR
 DEPLOY_DIR      = _deploy
+endif
+
+# The heroku deployment directory to be deployed
+# we must create this separated dir to avoid any conflict with _deploy (rsync and gh_pages)
+ifndef DEPLOY_DIR_HEROKU
+DEPLOY_DIR_HEROKU = _deploy_heroku
 endif
 
 # Copy contents from $(BUILDDIR) to $(DEPLOY_DIR)/$(DEPLOY_HTML_DIR) directory
@@ -145,17 +154,26 @@ endif
 ## -- Github Pages Deploy config -- ##
 
 # Configure the right deployment branch
-ifndef DEPLOY_BRANCH
-DEPLOY_BRANCH   = gh-pages
+ifndef DEPLOY_BRANCH_GITHUB
+DEPLOY_BRANCH_GITHUB = gh-pages
 endif
 
-#if REPO_URL was NOT defined by travis-ci
-ifndef REPO_URL
-# Configure your right project repo
+#if REPO_URL_GITHUB was NOT defined by travis-ci
+ifndef REPO_URL_GITHUB
+# Configure your right github project repo
 # REPO_URL       = git@github.com:teracy-official/sphinx-deployment.git
 endif
 
+## -- Heroku Deployment Config -- ##
+
+ifndef REPO_URL_HEROKU
+# Configure your right heroku repo
+# REPO_URL_HEROKU = git@heroku.com:spxd.git
+endif
+
+
 ## end deployment configuration, don't edit anything below this line ##
+#######################################################################
 ```
 
 Continuous Integration Build

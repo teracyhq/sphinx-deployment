@@ -63,7 +63,9 @@ function install() {
 
     echo "copying required files..."
     mkdir -p $docs_path
+    mkdir -p $docs_path/.deploy_heroku
     cp -r docs/* $docs_path
+    cp -r docs/.deploy_heroku/* $docs_path/.deploy_heroku
     cp .travis.yml $project_root_path
     mkdir -p $project_root_path/.travis
     cp -r .travis/* $project_root_path/.travis
