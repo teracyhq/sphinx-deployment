@@ -67,6 +67,7 @@ a. You need to copy these following files to your [sphinx][] directory:
 - `docs/sphinx_deployment.mk`
 - `docs/rsync_exclude`
 - `docs/.deploy_heroku/*`
+- `docs/.gitignore`
 
 b. Include `sphinx_deployment.mk` to your `Makefile`:
 

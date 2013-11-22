@@ -65,6 +65,7 @@ function install() {
     mkdir -p $docs_path
     mkdir -p $docs_path/.deploy_heroku
     cp -r docs/* $docs_path
+    cp docs/.gitignore $docs_path
     cp -r docs/.deploy_heroku/* $docs_path/.deploy_heroku
     cp .travis.yml $project_root_path
     mkdir -p $project_root_path/.travis
