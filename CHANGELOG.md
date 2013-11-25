@@ -10,6 +10,12 @@ Change Log
 - New Feature
     + [SPXD-9] - PaaS deployment: heroku
 
+- Migration (from v0.1.0 to v0.2.0)
+    + `REPO_URL` was changed to `REPO_URL_GITHUB`
+    + `DEPLOY_BRANCH` was changed to `DEPLOY_BRANCH_GITHUB`
+    + `$ make push` was changed to `$ make deploy_gh_pages`
+    + `$ make rsync` was changed to `$ make deploy_rsync`
+
 
 [0.2.0][] (2013-09-26)
 ----------------------
