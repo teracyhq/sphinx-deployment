@@ -13,7 +13,7 @@ after_script:
 - make deploy
 env:
   global:
-  - GH_REPO="teracy-official/sphinx-deployment"
+  - GH_REPO="teracyhq/sphinx-deployment"
 notifications:
   slack:
     secure: RhiJy6C19bKjM8fY5oHFSBAyHgRRDr+ZiYhK5QwlitpQmSCsABLsVGWpIrD+aA0nPKs6khtmNFUoEsXtzol65CsvV2m70SQbVK3OCbOwXd6xRSLw8hb1p+SOnpqu/VvZ89iayVl7J9Y8WpJQlUfobMXZgequED7mSRo9+bdBB4E=
