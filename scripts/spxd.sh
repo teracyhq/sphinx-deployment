@@ -12,7 +12,7 @@
 ############################################################################
 # Example to install on <your_project/docs>
 # $ cd <your_project>
-# $ wget https://raw.githubusercontent.com/teracyhq/sphinx-deployment/develop/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
+# $ wget https://raw.githubusercontent.com/teracyhq/sphinx-deployment/v0.3.1/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 #
 
 function command_exists() {
@@ -53,7 +53,7 @@ function install() {
     git clone https://github.com/teracyhq/sphinx-deployment.git
     cd sphinx-deployment
     git fetch origin
-    git checkout origin/develop
+    git checkout origin/v0.3.1
     # test
     # git clone https://github.com/hoatle/sphinx-deployment.git
     # cd sphinx-deployment
