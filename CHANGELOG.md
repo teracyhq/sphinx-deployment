@@ -1,8 +1,8 @@
 Change Log
 ==========
 
-[0.3.1] (2015-08-24)
---------------------
+0.3.1 (2015-08-24)
+------------------
 
 - Bug Fixes:
     + update the right script paths following the changes from github
