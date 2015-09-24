@@ -175,9 +175,9 @@ prepare_gh_pages_deployment:
 
 deploy_gh_pages: prepare_gh_pages_deployment
 	@echo "Deploying on github pages now..."
-	@cd $(DEPLOY_DIR); git add -A; git commit -m "docs updated at `date -u`";\
+	@cd $(DEPLOY_DIR); git add -A; git commit -m "docs updated at `LANG=en_US.utf8 date -u`";\
 		git push origin $(DEPLOY_BRANCH) --quiet
-	@echo "Github Pages deploy was completed at `date -u`"
+	@echo "Github Pages deploy was completed at `LANG=en_US.utf8 date -u`"
 
 prepare_heroku_deployment:
 	@echo "Preparing heroku deployment..."
@@ -192,9 +192,9 @@ prepare_heroku_deployment:
 
 deploy_heroku: prepare_heroku_deployment
 	@echo "Deploying on heroku now..."
-	@cd $(DEPLOY_DIR_HEROKU); git add -A; git commit -m "docs updated at `date -u`";\
+	@cd $(DEPLOY_DIR_HEROKU); git add -A; git commit -m "docs updated at `LANG=en_US.utf8 date -u`";\
 		git push origin master --quiet
-	@echo "Heroku deployment was completed at `date -u`"
+	@echo "Heroku deployment was completed at `LANG=en_US.utf8 date -u`"
 
 
 deploy: $(DEPLOY_DEFAULT)
