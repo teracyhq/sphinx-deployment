@@ -5,12 +5,10 @@ before_script:
 - export REPO_URL_GITHUB="https://$GH_TOKEN@github.com/$GH_REPO.git"
 - . ./.travis/setup.sh
 - echo $DEPLOY_HTML_DIR
+after_success:
 after_script:
-- sudo pip install -r docs/requirements.txt --use-mirrors
-- cd docs
-- make setup_gh_pages
-- make generate
-- make deploy
+- if [[ ! -z ${DEPLOY_HTML_DIR+x} ]]; then
+  pip install -r docs/requirements.txt && cd docs && make setup_gh_pages && make generate && make deploy; fi
 env:
   global:
   - GH_REPO="teracyhq/sphinx-deployment"
