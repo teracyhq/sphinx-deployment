@@ -8,6 +8,6 @@ elif [[ $TRAVIS_BRANCH == 'develop' ]] ; then
     export DEPLOY_HTML_DIR=docs/develop
 elif [[ $TRAVIS_BRANCH =~ ^v[0-9.]+$ ]]; then
     export DEPLOY_HTML_DIR=docs/${TRAVIS_BRANCH:1}
-else
-    export DEPLOY_HTML_DIR=docs/$TRAVIS_BRANCH
+elif [[ $TRAVIS_BRANCH =~ ^releases\/[0-9.]+$ ]]; then
+    export DEPLOY_HTML_DIR=$TRAVIS_BRANCH
 fi
