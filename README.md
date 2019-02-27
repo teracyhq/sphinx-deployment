@@ -47,6 +47,10 @@ For deploying with rsync only.
 
 For deploying with heroku only.
 
+**9. `$ make livehtml`**
+
+For auto-building the documentation when a change is detected thanks to https://pypi.org/project/sphinx-autobuild/
+
 
 Installation
 ------------

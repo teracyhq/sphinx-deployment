@@ -200,3 +200,7 @@ deploy_heroku: prepare_heroku_deployment
 deploy: $(DEPLOY_DEFAULT)
 
 gen_deploy: generate deploy
+
+# `$ make livehtml` to auto-build the documentation when a change is detected
+livehtml:
+	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html -H 0.0.0.0 --port 80
