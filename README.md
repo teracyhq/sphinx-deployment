@@ -51,6 +51,14 @@ For deploying with heroku only.
 
 For auto-building the documentation when a change is detected thanks to https://pypi.org/project/sphinx-autobuild/
 
+**10. `$ make build_docker_image`**
+
+To build the production docker image for the docs site, for example:
+
+```
+$ make build_docker_image DOCKER_IMG_TAG=company/project-docs:develop
+```
+
 
 Installation
 ------------
@@ -103,6 +111,27 @@ c.. To build with `travis-ci`, you need to copy these following files to your ro
 
 - `.travis.yml`
 - `.travis/setup.sh`
+
+
+Auto-build with docker-compose
+------------------------------
+
+Make sure `docker` and `docker-compose` are installed and running.
+
+```bash
+$ docker-compose up -d
+$ echo open http://localhost:`docker port docs_docs_1 80 | grep -o [0-9]*$` to view the docs
+open http://localhost:32770 to view the docs
+```
+
+Check the output from the command above to open the docs site. The docs site will auto reload when
+changes are made to the docs files.
+
+To see the docs site logs, execute the following command:
+
+```bash
+$ docker-compose logs -f docs
+```
 
 
 Configuration
@@ -186,6 +215,12 @@ ifndef REPO_URL_HEROKU
 # REPO_URL_HEROKU = git@heroku.com:spxd.git
 endif
 
+## -- Docker Config -- ##
+
+ifndef DOCKER_IMG_TAG
+# Configure your default docker image tag
+DOCKER_IMG_TAG = sphinx-deployment/docs:develop
+endif
 
 ## end deployment configuration, don't edit anything below this line ##
 #######################################################################

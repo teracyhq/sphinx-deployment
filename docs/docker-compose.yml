@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  # how to use:
+  # $ docker-compose up -d
+  # $ echo open http://localhost:`docker port docs_docs_1 80 | grep -o [0-9]*$` to view the docs
+  # open http://localhost:32770 to view the docs
+  docs:
+    image: python:3.6
+    working_dir: /opt/app
+    command: sh run-dev.sh
+    restart: unless-stopped
+    ports:
+      - "80"
+    volumes:
+      - .:/opt/app

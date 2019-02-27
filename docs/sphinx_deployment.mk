@@ -101,6 +101,14 @@ ifndef REPO_URL_HEROKU
 endif
 
 
+## -- Docker Config -- ##
+
+ifndef DOCKER_IMG_TAG
+# Configure your default docker image tag
+DOCKER_IMG_TAG = sphinx-deployment/docs:develop
+endif
+
+
 ## end deployment configuration, don't edit anything below this line ##
 #######################################################################
 
@@ -204,3 +212,8 @@ gen_deploy: generate deploy
 # `$ make livehtml` to auto-build the documentation when a change is detected
 livehtml:
 	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html -H 0.0.0.0 --port 80
+
+# for example: `$ make build_docker_image DOCKER_IMG_TAG=company/project-docs:develop`
+build_docker_image:
+	@echo "docker build -t $(DOCKER_IMG_TAG) -f Dockerfile ."
+	docker build -t $(DOCKER_IMG_TAG) -f Dockerfile .
