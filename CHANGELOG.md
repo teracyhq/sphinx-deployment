@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+
+[0.4.0][] (2019-03-01)
+----------------------
+
+- Features:
+    + should support sphinx-autobuild #12
+    + should support Docker workflow #13
+
+- Improvements:
+    + should replace --set-upstream by --set-upstream-to instead #14
+
+Details: https://github.com/teracyhq/sphinx-deployment/milestone/1?closed=1
+
 0.3.1 (2015-08-24)
 ------------------
 
@@ -50,3 +63,6 @@ Change Log
 [0.2.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10405&version=10004
 
 [0.3.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10405&version=10301
+
+[0.4.0]: https://github.com/teracyhq/sphinx-deployment/milestone/1?closed=1
+
