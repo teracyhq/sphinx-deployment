@@ -71,14 +71,14 @@ You need to specify the `<docs_path>` to your sphinx docs directory:
 
 ``` bash
 $ cd <your_project>
-$ wget https://raw.githubusercontent.com/teracyhq/sphinx-deployment/v0.4.0/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
+$ wget https://raw.githubusercontent.com/teracyhq/sphinx-deployment/develop/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
 ```
 
 For example:
 
 ``` bash
 $ cd my_project
-$ wget https://raw.githubusercontent.com/teracyhq/sphinx-deployment/v0.4.0/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
+$ wget https://raw.githubusercontent.com/teracyhq/sphinx-deployment/develop/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 ```
 
 **2. Manual**
